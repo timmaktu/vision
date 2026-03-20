@@ -108,8 +108,33 @@
 <!-- Hero Section -->
 <section class="relative min-h-[870px] flex items-center overflow-hidden">
 <div class="absolute inset-0 z-0">
-<img alt="Modern university campus architecture" class="w-full h-full object-cover" src="hero.jpeg"/>
-<div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent"></div>
+  <div id="hero-slider" class="relative w-full h-full">
+    <div class="absolute inset-0 overflow-hidden">
+      <div data-carousel-track class="flex h-full transition-transform duration-700">
+        <img class="w-full h-full object-cover flex-shrink-0" src="hero1.jpeg" alt="Hero 1" />
+        <img class="w-full h-full object-cover flex-shrink-0" src="hero2.jpeg" alt="Hero 2" />
+        <img class="w-full h-full object-cover flex-shrink-0" src="hero3.jpeg" alt="Hero 3" />
+        <img class="w-full h-full object-cover flex-shrink-0" src="hero4.jpeg" alt="Hero 4" />
+        <img class="w-full h-full object-cover flex-shrink-0" src="hero5.jpeg" alt="Hero 5" />
+      </div>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent pointer-events-none"></div>
+
+    <button aria-label="Previous" data-carousel-prev class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 backdrop-blur-sm">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <button aria-label="Next" data-carousel-next class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full p-3 backdrop-blur-sm">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+
+    <div data-carousel-dots class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
+      <button data-dot="0" class="w-3 h-3 rounded-full bg-white/40"></button>
+      <button data-dot="1" class="w-3 h-3 rounded-full bg-white/20"></button>
+      <button data-dot="2" class="w-3 h-3 rounded-full bg-white/20"></button>
+      <button data-dot="3" class="w-3 h-3 rounded-full bg-white/20"></button>
+      <button data-dot="4" class="w-3 h-3 rounded-full bg-white/20"></button>
+    </div>
+  </div>
 </div>
 <div class="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-8 items-center">
 <div class="md:col-span-8 lg:col-span-7">
@@ -583,4 +608,47 @@
 </div>
 </div>
 </footer>
+
+<!-- Slider JS -->
+<script>
+(() => {
+  const track = document.querySelector('[data-carousel-track]');
+  if (!track) return;
+  const slides = Array.from(track.children);
+  const dots = Array.from(document.querySelectorAll('[data-carousel-dots] [data-dot]'));
+  const prevBtn = document.querySelector('[data-carousel-prev]');
+  const nextBtn = document.querySelector('[data-carousel-next]');
+  let current = 0;
+  const total = slides.length;
+
+  function update() {
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => {
+      d.classList.toggle('bg-white/80', i === current);
+      d.classList.toggle('bg-white/20', i !== current);
+    });
+  }
+
+  function go(n) {
+    current = (n + total) % total;
+    update();
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', () => go(current + 1));
+  if (prevBtn) prevBtn.addEventListener('click', () => go(current - 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+  let autoplay = setInterval(() => go(current + 1), 5000);
+  const slider = document.getElementById('hero-slider');
+  if (slider) {
+    slider.addEventListener('mouseenter', () => clearInterval(autoplay));
+    slider.addEventListener('mouseleave', () => {
+      autoplay = setInterval(() => go(current + 1), 5000);
+    });
+  }
+
+  update();
+})();
+</script>
+
 </body></html>
