@@ -81,6 +81,75 @@
       .text-balance {
         text-wrap: balance;
       }
+      /* Programs grid styles (imported from courses.html) */
+      .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 30px;
+        row-gap: 120px;
+        max-width: none;
+
+      }
+
+      .card-container {
+        position: relative;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        padding: 20px 20px;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: visible;
+      }
+
+      .card-content {
+        width: 55%;
+        z-index: 2;
+      }
+
+      .card-content h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 0 15px 0;
+        color: #1a1a1a;
+      }
+
+      .card-content p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .breakout-image {
+        position: absolute;
+        right: -20px;
+        bottom: 0;
+        height: 135%;
+        max-width: 60%;
+        object-fit: contain;
+        object-position: bottom right;
+        z-index: 1;
+        -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+      }
+
+      @media (max-width: 1100px) {
+        .programs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .programs-grid {
+          grid-template-columns: 1fr;
+        }
+        .card-content {
+          width: 60%;
+        }
+      }
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface antialiased">
@@ -187,73 +256,62 @@
 </section>
 <!-- Areas of Specialization -->
 <section class="py-24 bg-surface-container-low" id="specialization">
-<div class="max-w-7xl mx-auto px-6">
-<div class="text-center mb-16">
+<div class="max-w-[1400px] mx-auto px-6">
+<div class="text-center mb-24">
 <h2 class="font-headline text-4xl font-bold text-primary mb-4">Areas of Specialization</h2>
 <p class="text-on-surface-variant max-w-2xl mx-auto">Expert guidance across a diverse range of academic disciplines, ensuring precision in placement and academic alignment.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<!-- Medical -->
-<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between border-b-4 border-transparent hover:border-secondary-container">
-<div>
-<div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">medical_services</span>
-</div>
-<h3 class="font-headline text-xl font-bold text-primary mb-3">Medical</h3>
-<p class="text-on-surface-variant text-sm">MBBS, BDS, Allied Health, and specialized nursing programs with top clinical institutions.</p>
-</div>
-</div>
-<!-- Engineering -->
-<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between border-b-4 border-transparent hover:border-secondary-container">
-<div>
-<div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">engineering</span>
-</div>
-<h3 class="font-headline text-xl font-bold text-primary mb-3">Engineering</h3>
-<p class="text-on-surface-variant text-sm">Core Engineering, IT, AI, and emerging technologies at premier technical universities.</p>
-</div>
-</div>
-<!-- Arts & Sciences -->
-<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between border-b-4 border-transparent hover:border-secondary-container">
-<div>
-<div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">palette</span>
-</div>
-<h3 class="font-headline text-xl font-bold text-primary mb-3">Arts &amp; Sciences</h3>
-<p class="text-on-surface-variant text-sm">Liberal Arts, Pure Sciences, and Creative disciplines for the modern innovator.</p>
-</div>
-</div>
-<!-- Commerce -->
-<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between border-b-4 border-transparent hover:border-secondary-container">
-<div>
-<div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">payments</span>
-</div>
-<h3 class="font-headline text-xl font-bold text-primary mb-3">Commerce</h3>
-<p class="text-on-surface-variant text-sm">Business Management, Accountancy, and Global Trade certifications.</p>
-</div>
-</div>
-<!-- Law -->
-<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between border-b-4 border-transparent hover:border-secondary-container">
-<div>
-<div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">gavel</span>
-</div>
-<h3 class="font-headline text-xl font-bold text-primary mb-3">Law</h3>
-<p class="text-on-surface-variant text-sm">Integrated LL.B programs and specialized Legal studies in South India's top law schools.</p>
-</div>
-</div>
-<!-- Marine Studies -->
-<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between border-b-4 border-transparent hover:border-secondary-container">
-<div>
-<div class="w-14 h-14 bg-primary/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-3xl">sailing</span>
-</div>
-<h3 class="font-headline text-xl font-bold text-primary mb-3">Marine Studies</h3>
-<p class="text-on-surface-variant text-sm">Marine Engineering, Nautical Science, and Oceanography specializing in island economies.</p>
-</div>
-</div>
-</div>
+  <div class="programs-grid">
+
+    <div class="card-container">
+      <div class="card-content">
+        <h2>Medical</h2>
+        <p>MBBS, BDS, Allied Health, and specialized nursing programs with top clinical institutions.</p>
+      </div>
+      <img src="medical.png" alt="Medical Student" class="breakout-image" style="height: 140%;"> 
+    </div>
+
+    <div class="card-container">
+      <div class="card-content">
+        <h2>Engineering</h2>
+        <p>Core Engineering, IT, AI, and emerging technologies at premier technical universities.</p>
+      </div>
+      <img src="engineering.png" alt="Engineering Student" class="breakout-image">
+    </div>
+
+    <div class="card-container">
+      <div class="card-content">
+        <h2>Arts &amp; Sciences</h2>
+        <p>Liberal Arts, Pure Sciences, and Creative disciplines for the modern innovator.</p>
+      </div>
+      <img src="arts.png" alt="Arts Student" class="breakout-image" style="height: 130%;">
+    </div>
+
+    <div class="card-container">
+      <div class="card-content">
+        <h2>Commerce</h2>
+        <p>Business Management, Accountancy, and Global Trade certifications.</p>
+      </div>
+      <img src="commerce.png" alt="Commerce Student" class="breakout-image">
+    </div>
+
+    <div class="card-container">
+      <div class="card-content">
+        <h2>Law</h2>
+        <p>Integrated LL.B programs and specialized Legal studies in South India's top law schools.</p>
+      </div>
+      <img src="law.png" alt="Law Student" class="breakout-image" style="height: 125%;">
+    </div>
+
+    <div class="card-container">
+      <div class="card-content">
+        <h2>Marine</h2>
+        <p>Marine Engineering, Nautical Science, and Oceanography specializing in island economies.</p>
+      </div>
+      <img src="marine.png" alt="Marine Student" class="breakout-image" style="height: 145%;">
+    </div>
+
+  </div>
 </div>
 </section>
 <!-- Our Consultancy Process Section -->
